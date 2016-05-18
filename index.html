@@ -1,0 +1,68 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+	<title>topsecret</title>
+  <meta charset="utf8">
+	<style>
+		body{
+			background-color: #000;
+			margin:0;
+			padding: 0;
+			overflow: hidden;
+		}
+		canvas{
+			float: left;
+			margin-right: 20px;
+		}
+		#canvas_intro{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+			transition: top 1s ease-in-out;
+			top: 0;
+		}
+		#canvas_container{
+			position: absolute;
+			width: 1291px;
+			height: 380px;
+			margin: auto;
+			top:0; left:0; right:0; bottom:0;
+			transition: width 2s;
+		}
+		#rewind_text, #replay_text, #ending_text{
+			opacity: 0;
+			position: absolute;
+			bottom: -25%;
+			width: 100%;
+			height: 50px;
+			color: #eee;
+			font-size: 30px;
+			text-align: center;
+			letter-spacing: 2px;
+
+			transition: opacity 1s ease-in;
+		}
+		#canvas5{
+			width: 0px;
+			height: 380px;
+			margin-right: 0px;
+			transition: width 2s;
+			border: 0px;
+		}
+	</style>
+</head>
+<body>
+	<canvas id="canvas_intro"></canvas>
+	<div id="canvas_container">
+		<canvas id="canvas1" width="300" height="380"></canvas>
+		<canvas id="canvas2" width="300" height="380"></canvas>
+		<canvas id="canvas3" width="300" height="380"></canvas>
+		<canvas id="canvas4" width="300" height="380"></canvas>
+		<canvas id="canvas5" width="0" height="380"></canvas>
+		<div id="rewind_text">-Rewinding-</div>
+		<div id="replay_text">-Replaying-</div>
+		<div id="ending_text">-Head over to [insert place here] to answer-</div>
+	</div>
+</body>
+<script src="main.js"></script>
+</html>
