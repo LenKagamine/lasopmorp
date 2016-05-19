@@ -1,6 +1,3 @@
-/*TODO:
-- start timer when player starts moving
-*/
 interface Window{
   requestAnimFrame: any;
   mozRequestAnimationFrame: any;
@@ -179,6 +176,8 @@ class Level{
   pathCanvas: HTMLCanvasElement;
   pctx: CanvasRenderingContext2D;
 
+  startMove = false;
+
   pathOldPoint: null;
 
   constructor(public config: any){
@@ -208,6 +207,7 @@ class Level{
 
   public update(){
     this.player.update(this.width, this.height, this.blocks);
+    if(Key.up || Key.down || Key.right || Key.left) this.startMove = true;
 
     for(var gem of this.gems){
       let isCollect = gem.update(this.player.x, this.player.y);
@@ -218,7 +218,7 @@ class Level{
       this.exit.update(this.player.x, this.player.y);
     }
 
-    if(state > 0) this.timer.update();
+    if(state > 0 && this.startMove) this.timer.update();
 
     pFrames[currLevel].push({
       player: {

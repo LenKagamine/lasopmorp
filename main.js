@@ -138,6 +138,7 @@ var Level = (function () {
         this.gems = [];
         this.gemsCollected = 0;
         this.blocks = [];
+        this.startMove = false;
         this.canvas = config.canvas;
         this.ctx = this.canvas.getContext("2d");
         this.width = this.canvas.width;
@@ -161,6 +162,8 @@ var Level = (function () {
     }
     Level.prototype.update = function () {
         this.player.update(this.width, this.height, this.blocks);
+        if (Key.up || Key.down || Key.right || Key.left)
+            this.startMove = true;
         for (var _i = 0, _a = this.gems; _i < _a.length; _i++) {
             var gem = _a[_i];
             var isCollect = gem.update(this.player.x, this.player.y);
@@ -170,7 +173,7 @@ var Level = (function () {
         if (this.gemsCollected >= this.gems.length) {
             this.exit.update(this.player.x, this.player.y);
         }
-        if (state > 0)
+        if (state > 0 && this.startMove)
             this.timer.update();
         pFrames[currLevel].push({
             player: {
