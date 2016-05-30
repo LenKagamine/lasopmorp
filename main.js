@@ -420,7 +420,6 @@ function nextLevel() {
     if (state == 4) {
         level = null;
         document.getElementById("replay_text").style.opacity = "0";
-        document.getElementById("ending_text").style.opacity = "1";
         document.getElementById("canvas_container").style.width = "1590px";
         var questionCanvas = document.getElementById("canvas5");
         questionCanvas.setAttribute("width", "300");
