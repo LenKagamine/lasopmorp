@@ -222,6 +222,10 @@ var Level = (function () {
             };
         }
     };
+    Level.prototype.drawPath = function () {
+        this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+        this.ctx.drawImage(this.pathCanvas, 0, 0);
+    };
     return Level;
 }());
 var Player = (function () {
@@ -403,6 +407,7 @@ function nextLevel() {
     if (state == 3) {
         document.getElementById("rewind_text").style.opacity = "0";
         document.getElementById("replay_text").style.opacity = "1";
+        level.drawPath();
         currLevel++;
         if (currLevel < config.length) {
             level = new Level(config[currLevel]);

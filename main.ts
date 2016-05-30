@@ -22,7 +22,7 @@ introCanvas.width = window.innerWidth;
 introCanvas.height = window.innerHeight;
 
 
-let pFrames = [[], [], [], [], []];
+let pFrames = [[], [], [], [], []]; //intro, P, R, O, M
 let currFrame = 0;
 
 /*
@@ -275,6 +275,11 @@ class Level{
       }
     }
   }
+
+  public drawPath(){
+    this.ctx.clearRect(0, 0, this.canvas.width, this.canvas. height);
+    this.ctx.drawImage(this.pathCanvas, 0, 0);
+  }
 }
 
 class Player{
@@ -339,11 +344,11 @@ class Gem{
   public draw(){
     if(this.collected) return;
 
-    var spikes = 4;
-    var innerR = 10, outerR = 15;
-    var rot = Math.PI / 2 * 3;
-    var step = Math.PI / spikes;
-    var xpos = this.x, ypos = this.y;
+    let spikes = 4;
+    let innerR = 10, outerR = 15;
+    let rot = Math.PI / 2 * 3;
+    let step = Math.PI / spikes;
+    let xpos = this.x, ypos = this.y;
 
     this.ctx.beginPath();
     this.ctx.moveTo(xpos, ypos - outerR);
@@ -417,7 +422,7 @@ class Exit{
 }
 
 function loadFrame(){
-  var frame = pFrames[currLevel][currFrame];
+  let frame = pFrames[currLevel][currFrame];
   level.player.x = frame.player.x
   level.player.y = frame.player.y;
 }
@@ -459,6 +464,7 @@ function nextLevel(){
   if(state == 3){
     document.getElementById("rewind_text").style.opacity = "0";
     document.getElementById("replay_text").style.opacity = "1";
+    level.drawPath();
     currLevel++;
     if(currLevel < config.length){
       level = new Level(config[currLevel]);
@@ -473,13 +479,13 @@ function nextLevel(){
     document.getElementById("ending_text").style.opacity = "1";
     document.getElementById("canvas_container").style.width = "1590px";
 
-    var questionCanvas = <HTMLCanvasElement>document.getElementById("canvas5");
+    let questionCanvas = <HTMLCanvasElement>document.getElementById("canvas5");
     questionCanvas.setAttribute("width", "300");
     questionCanvas.style.width = "300px";
     questionCanvas.style.border = "1px solid white";
-    var qctx = questionCanvas.getContext("2d");
+    let qctx = questionCanvas.getContext("2d");
 
-    var questionPoints = {
+    let questionPoints = {
       x: [60, 60, 100, 200, 240, 240, 150, 150],
       y: [145, 90, 50, 50, 90, 145, 200, 250]
     };
@@ -515,13 +521,13 @@ namespace Key{
     65:"left", 87:"up", 68:"right", 83:"down" //WASD
   };
   let onKeyDown = (event) => {
-    var code = KEY_CODES[event.keyCode];
+    let code = KEY_CODES[event.keyCode];
     Key[code] = true;
     event.stopPropagation();
     event.preventDefault();
   }
   let onKeyUp = (event) => {
-    var code = KEY_CODES[event.keyCode];
+    let code = KEY_CODES[event.keyCode];
     Key[code] = false;
     event.stopPropagation();
     event.preventDefault();
