@@ -70,7 +70,7 @@ var config = [
             { x: 300, y: 0, radius: 50 },
             { x: 300, y: 300, radius: 50 }
         ],
-        duration: 150
+        duration: 170
     },
     {
         canvas: document.getElementById("canvas4"),
